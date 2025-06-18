@@ -27,4 +27,4 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 	if position.y > 900:
-		position = start_position
+		position = Global.checkpoint
