@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://c1rhwdgq8w4po"]
+
+[ext_resource type="PackedScene" uid="uid://bu7txl8dqc27c" path="res://prefabs/mango.tscn" id="1_8ffim"]
+[ext_resource type="Texture2D" uid="uid://cf7dhhh8npsmt" path="res://icon.svg" id="2_xfk5q"]
+[ext_resource type="PackedScene" uid="uid://bu8l1ubpuadla" path="res://prefabs/checkpoint.tscn" id="3_xfk5q"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xfk5q"]
+texture = ExtResource("2_xfk5q")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-64, -64, 64, -64, 64, 64, -64, 64)
+
+[sub_resource type="TileSet" id="TileSet_7p6j4"]
+tile_size = Vector2i(128, 128)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_xfk5q")
+
+[node name="Level 1" type="Node2D"]
+
+[node name="mango" parent="." instance=ExtResource("1_8ffim")]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_7p6j4")
+format = 2
+layer_0/tile_data = PackedInt32Array(131070, 0, 0, 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65534, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 7, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 13, 0, 0, 14, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 12, 0, 0, 15, 0, 0, 16, 0, 0, 17, 0, 0, 18, 0, 0, 19, 0, 0, 65555, 0, 0, 65556, 0, 0, 65557, 0, 0, 65558, 0, 0, 22, 0, 0, 23, 0, 0, 24, 0, 0, 25, 0, 0, -65510, 0, 0, -65509, 0, 0, -131044, 0, 0, -131043, 0, 0, -65506, 0, 0, -65505, 0, 0, 32, 0, 0, 65568, 0, 0, 65569, 0, 0, 65570, 0, 0, 34, 0, 0, 35, 0, 0, 36, 0, 0, 37, 0, 0)
+
+[node name="checkpoint" parent="." instance=ExtResource("3_xfk5q")]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu7txl8dqc27c"]
+
+[ext_resource type="Script" uid="uid://cg2qxhp5tayq1" path="res://Scripts/mango_character_script.gd" id="1_7aa1i"]
+[ext_resource type="Texture2D" uid="uid://cf7dhhh8npsmt" path="res://icon.svg" id="2_gqx06"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7p6j4"]
+
+[node name="mango" type="CharacterBody2D"]
+script = ExtResource("1_7aa1i")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_gqx06")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3, 3)
+shape = SubResource("RectangleShape2D_7p6j4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
