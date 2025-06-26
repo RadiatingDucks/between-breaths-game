@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://bu7txl8dqc27c"]
+[gd_scene load_steps=6 format=3 uid="uid://bu7txl8dqc27c"]
 
 [ext_resource type="Script" uid="uid://cg2qxhp5tayq1" path="res://Scripts/mango_character_script.gd" id="1_7aa1i"]
 [ext_resource type="Texture2D" uid="uid://cf7dhhh8npsmt" path="res://icon.svg" id="2_gqx06"]
+[ext_resource type="Script" uid="uid://dr2tu0vwokkcv" path="res://Scripts/States/statemachine.gd" id="3_gqx06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p6j4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7aa1i"]
 
 [node name="mango" type="CharacterBody2D"]
 script = ExtResource("1_7aa1i")
@@ -19,3 +22,27 @@ shape = SubResource("RectangleShape2D_7p6j4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="time_out_water" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="water_detector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="water_detector"]
+scale = Vector2(3.1, 3.1)
+shape = SubResource("RectangleShape2D_7aa1i")
+
+[node name="Statemachine" type="Node" parent="."]
+script = ExtResource("3_gqx06")
+
+[node name="IdleState" type="Node" parent="Statemachine"]
+
+[node name="SwimState" type="Node" parent="Statemachine"]
+
+[node name="DeadState" type="Node" parent="Statemachine"]
+
+[connection signal="timeout" from="time_out_water" to="." method="_on_time_out_water_timeout"]
+[connection signal="body_shape_entered" from="water_detector" to="." method="_on_water_detector_body_shape_entered"]
+[connection signal="body_shape_exited" from="water_detector" to="." method="_on_water_detector_body_shape_exited"]
