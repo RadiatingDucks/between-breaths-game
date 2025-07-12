@@ -1,15 +1,67 @@
-[gd_scene load_steps=6 format=3 uid="uid://bu7txl8dqc27c"]
+[gd_scene load_steps=9 format=3 uid="uid://bu7txl8dqc27c"]
 
 [ext_resource type="Script" uid="uid://cg2qxhp5tayq1" path="res://Scripts/mango_character_script.gd" id="1_7aa1i"]
 [ext_resource type="Texture2D" uid="uid://cf7dhhh8npsmt" path="res://icon.svg" id="2_gqx06"]
-[ext_resource type="Script" uid="uid://dr2tu0vwokkcv" path="res://Scripts/States/statemachine.gd" id="3_gqx06"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p6j4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7aa1i"]
 
+[sub_resource type="Animation" id="Animation_7aa1i"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_gqx06"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_waf7k"]
+resource_name = "run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_613gq"]
+_data = {
+&"RESET": SubResource("Animation_gqx06"),
+&"idle": SubResource("Animation_7aa1i"),
+&"run": SubResource("Animation_waf7k")
+}
+
 [node name="mango" type="CharacterBody2D"]
 script = ExtResource("1_7aa1i")
+friction = 1700
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -34,14 +86,10 @@ collision_mask = 2
 scale = Vector2(3.1, 3.1)
 shape = SubResource("RectangleShape2D_7aa1i")
 
-[node name="Statemachine" type="Node" parent="."]
-script = ExtResource("3_gqx06")
-
-[node name="IdleState" type="Node" parent="Statemachine"]
-
-[node name="SwimState" type="Node" parent="Statemachine"]
-
-[node name="DeadState" type="Node" parent="Statemachine"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_613gq")
+}
 
 [connection signal="timeout" from="time_out_water" to="." method="_on_time_out_water_timeout"]
 [connection signal="body_shape_entered" from="water_detector" to="." method="_on_water_detector_body_shape_entered"]
