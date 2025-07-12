@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="godot-game-between-breaths"
+config/name="Between-breaths(recover)"
 run/main_scene="uid://c1rhwdgq8w4po"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
