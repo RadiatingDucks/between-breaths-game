@@ -1,14 +1,14 @@
 [gd_scene load_steps=9 format=3 uid="uid://bu7txl8dqc27c"]
 
 [ext_resource type="Script" uid="uid://cg2qxhp5tayq1" path="res://Scripts/mango_character_script.gd" id="1_7aa1i"]
-[ext_resource type="Texture2D" uid="uid://cf7dhhh8npsmt" path="res://icon.svg" id="2_gqx06"]
+[ext_resource type="Texture2D" uid="uid://cf7dhhh8npsmt" path="res://icon.svg" id="2_7aa1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p6j4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7aa1i"]
 
-[sub_resource type="Animation" id="Animation_7aa1i"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_gqx06"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -22,8 +22,8 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_gqx06"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_7aa1i"]
+resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -61,12 +61,11 @@ _data = {
 
 [node name="mango" type="CharacterBody2D"]
 script = ExtResource("1_7aa1i")
-friction = 1700
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_gqx06")
+texture = ExtResource("2_7aa1i")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3, 3)
