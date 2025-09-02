@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dst0thrkh0ccd"
-path="res://.godot/imported/Screenshot 2025-06-27 121247.png-2d76716275d1ac41f4a032983166af79.ctex"
+uid="uid://cswvdplwmu0d1"
+path="res://.godot/imported/spikesbigger.png-8586fa47c845c4ef87c77359dc8ff291.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Screenshot 2025-06-27 121247.png"
-dest_files=["res://.godot/imported/Screenshot 2025-06-27 121247.png-2d76716275d1ac41f4a032983166af79.ctex"]
+source_file="res://pictures/spikesbigger.png"
+dest_files=["res://.godot/imported/spikesbigger.png-8586fa47c845c4ef87c77359dc8ff291.ctex"]
 
 [params]
 

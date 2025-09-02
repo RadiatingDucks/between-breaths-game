@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://blxlepvqpdssh"]
+
+[ext_resource type="Texture2D" uid="uid://cswvdplwmu0d1" path="res://pictures/spikesbigger.png" id="1_ba3ke"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsmp6"]
+texture = ExtResource("1_ba3ke")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-7.00988, -0.31863, -0.63726, 16, 7.32851, -0.31863, 13.1297, 16, -13.4894, 16)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.31863, -7.32851, 16, -13.9283, 16, 13.0577, -0.63726, 7.32851, 16, 0)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-13.6932, -16, 13.4299, -16, 7.32851, 1.59315, 0, -16, -7.00988, 1.59315)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -13.1666, 0.637264, -7.96577, -16, -0.63726, 0, 7.64714, -16, 12.9032)
+
+[sub_resource type="TileSet" id="TileSet_xrdnt"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
+sources/1 = SubResource("TileSetAtlasSource_lsmp6")
+
+[node name="Spikes" type="TileMap"]
+tile_set = SubResource("TileSet_xrdnt")
+format = 2

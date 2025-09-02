@@ -13,11 +13,17 @@ config_version=5
 config/name="Between-breaths(recover)"
 run/main_scene="uid://c1rhwdgq8w4po"
 config/features=PackedStringArray("4.4", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://pictures/icon.svg"
 
 [autoload]
 
 Global="*res://Scripts/global.gd"
+
+[display]
+
+window/size/viewport_width=1536
+window/size/viewport_height=864
+window/stretch/mode="viewport"
 
 [input]
 

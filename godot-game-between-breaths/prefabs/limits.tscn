@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c7sypbhwp74x5"]
+
+[ext_resource type="Texture2D" uid="uid://o5t5do5q3liv" path="res://pictures/New Piskel.png" id="1_aay06"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qe0n7"]
+texture = ExtResource("1_aay06")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_8y1uw"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_qe0n7")
+
+[node name="limits" type="TileMap"]
+modulate = Color(0.8, 0.76, 1, 1)
+self_modulate = Color(0.860321, 0.762295, 0.964052, 1)
+tile_set = SubResource("TileSet_8y1uw")
+format = 2

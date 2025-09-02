@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btua22d60xuho"
-path="res://.godot/imported/mangoPic.png-e91f13798d36edb5d74acd2725fefdbe.ctex"
+uid="uid://d0gd31d283u5w"
+path="res://.godot/imported/white32block.png-2f4fe33331ba372fdcb514c6bcdb3a40.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mangoPic.png"
-dest_files=["res://.godot/imported/mangoPic.png-e91f13798d36edb5d74acd2725fefdbe.ctex"]
+source_file="res://pictures/white32block.png"
+dest_files=["res://.godot/imported/white32block.png-2f4fe33331ba372fdcb514c6bcdb3a40.ctex"]
 
 [params]
 

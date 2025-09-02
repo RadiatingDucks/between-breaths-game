@@ -12,6 +12,8 @@ enum STATES{MOVE, CLIMB}
 @export var down_gravity: = 1500
 @export var jump_amount: = -750
 
+var coyote_time: = 0
+
 @export var state := STATES.MOVE
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -28,6 +30,8 @@ func _physics_process(delta: float) -> void:
 	
 	match state:
 		STATES.MOVE:
+			
+			coyote_time -= delta
 			# Add the gravity.
 			apply_gravity(delta)
 			
@@ -35,7 +39,7 @@ func _physics_process(delta: float) -> void:
 				#velocity.y += up_gravity * delta
 
 			# Handle jump.
-			if Input.is_action_just_pressed("jump") and is_on_floor():
+			if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_time > 0):
 				velocity.y = jump_amount
 
 			# Get the input direction and handle the movement/deceleration.
@@ -49,7 +53,11 @@ func _physics_process(delta: float) -> void:
 				accelerate_x(direction, delta)
 				animation_player.play("run")
 
+			var was_on_floor = is_on_floor()
 			move_and_slide()
+			
+			if was_on_floor and not is_on_floor() and velocity.y > 0:
+				coyote_time = 0.25
 	
 func accelerate_x(horizontal_direction: float, delta: float) -> void:
 	var acceleration_amount = acceleration
@@ -71,8 +79,7 @@ func apply_gravity(delta: float) -> void:
 	
 	
 
-	if position.y > 900:
-		died()
+
 	
 	if Input.is_key_pressed(KEY_R):
 		get_tree().reload_current_scene()
@@ -89,6 +96,8 @@ func _on_water_detector_body_shape_entered(_body_rid: RID, body: Node2D, _body_s
 			water_contact_count += 1
 			if water_contact_count == 1:
 				$time_out_water.stop()
+		if body.name == "Spikes":
+			died()
 	
 
 
