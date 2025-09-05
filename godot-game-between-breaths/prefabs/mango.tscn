@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bu7txl8dqc27c"]
+[gd_scene load_steps=10 format=3 uid="uid://bu7txl8dqc27c"]
 
 [ext_resource type="Script" uid="uid://cg2qxhp5tayq1" path="res://Scripts/mango_character_script.gd" id="1_7aa1i"]
-[ext_resource type="Texture2D" uid="uid://bi1tx73pmuw85" path="res://pictures/mangoRunAndIdle.png" id="2_7aa1i"]
+[ext_resource type="Texture2D" uid="uid://cwsn3utno3k8b" path="res://pictures/mango_runJumpidle.png" id="2_7aa1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p6j4"]
-size = Vector2(14, 20)
+size = Vector2(13.6667, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7aa1i"]
+size = Vector2(13.6667, 20)
 
 [sub_resource type="Animation" id="Animation_gqx06"]
 length = 0.001
@@ -14,7 +15,7 @@ step = 0.85
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -32,7 +33,7 @@ step = 0.085
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -42,6 +43,22 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
+[sub_resource type="Animation" id="Animation_613gq"]
+resource_name = "jump"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 14, 14, 14, 14, 14, 14]
+}
+
 [sub_resource type="Animation" id="Animation_waf7k"]
 resource_name = "run"
 loop_mode = 1
@@ -49,7 +66,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Anchor/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,6 +80,7 @@ tracks/0/keys = {
 _data = {
 &"RESET": SubResource("Animation_gqx06"),
 &"idle": SubResource("Animation_7aa1i"),
+&"jump": SubResource("Animation_613gq"),
 &"run": SubResource("Animation_waf7k")
 }
 
@@ -71,15 +89,17 @@ scale = Vector2(2, 2)
 script = ExtResource("1_7aa1i")
 metadata/_edit_group_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Anchor" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Anchor"]
 texture_filter = 1
 position = Vector2(-0.5, 0)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_7aa1i")
-hframes = 12
+hframes = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.5, 0)
+position = Vector2(4.75, 0)
 scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_7p6j4")
 

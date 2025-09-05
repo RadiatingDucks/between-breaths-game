@@ -18,6 +18,8 @@ var coyote_time: = 0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
+@onready var anchor: Node2D = $Anchor
+@onready var collision_shape : CollisionShape2D = $CollisionShape2D
 
 const SPEED = 350.0
 const JUMP_VELOCITY = -600.0
@@ -50,9 +52,14 @@ func _physics_process(delta: float) -> void:
 				apply_friction(delta)
 				animation_player.play("idle")
 			if direction != 0:
+				anchor.scale.x =  sign(direction)
+				collision_shape.scale.x =  sign(direction)
 				accelerate_x(direction, delta)
 				animation_player.play("run")
-
+			
+			if not is_on_floor():
+				animation_player.play("jump")
+				
 			var was_on_floor = is_on_floor()
 			move_and_slide()
 			
