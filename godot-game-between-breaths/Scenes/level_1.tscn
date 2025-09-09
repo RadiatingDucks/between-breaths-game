@@ -146,9 +146,12 @@ layer_0/tile_data = PackedInt32Array(-262099, 1, 0, -262098, 1, 0, -262097, 1, 0
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="bubbleUI" type="HBoxContainer" parent="UI"]
-custom_minimum_size = Vector2(150, 40)
-offset_right = 40.0
-offset_bottom = 40.0
+custom_minimum_size = Vector2(200, 60)
+offset_left = 25.0
+offset_right = 265.0
+offset_bottom = 60.0
+scale = Vector2(1.5, 1.5)
+theme_override_constants/separation = 20
 
 [node name="TextureRect" type="TextureRect" parent="UI/bubbleUI"]
 layout_mode = 2
@@ -157,15 +160,23 @@ stretch_mode = 3
 
 [node name="TextureRect2" type="TextureRect" parent="UI/bubbleUI"]
 layout_mode = 2
+texture = ExtResource("7_lsmp6")
+stretch_mode = 3
 
 [node name="TextureRect3" type="TextureRect" parent="UI/bubbleUI"]
 layout_mode = 2
+texture = ExtResource("7_lsmp6")
+stretch_mode = 3
 
 [node name="TextureRect4" type="TextureRect" parent="UI/bubbleUI"]
 layout_mode = 2
+texture = ExtResource("7_lsmp6")
+stretch_mode = 3
 
 [node name="TextureRect5" type="TextureRect" parent="UI/bubbleUI"]
 layout_mode = 2
+texture = ExtResource("7_lsmp6")
+stretch_mode = 3
 
 [node name="TileMap2" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_chwpn")

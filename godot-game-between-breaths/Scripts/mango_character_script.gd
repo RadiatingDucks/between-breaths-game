@@ -19,17 +19,25 @@ var coyote_time: = 0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 @onready var anchor: Node2D = $Anchor
+
 @onready var collision_shape : CollisionShape2D = $CollisionShape2D
+
+@onready var bubble_ui = get_node("../UI/bubbleUI")
+
+@onready var water_timer := $time_out_water
+
+
 
 const SPEED = 350.0
 const JUMP_VELOCITY = -600.0
 
 var start_position = Vector2(0,0)
 var water_contact_count = 0
-
+var total_bubbles := 5
+var max_time := 5.0
 
 func _physics_process(delta: float) -> void:
-	
+	update_bubbles()
 	match state:
 		STATES.MOVE:
 			
@@ -48,6 +56,9 @@ func _physics_process(delta: float) -> void:
 			# As good practice, you should replace UI actions with custom gameplay actions.
 			var direction := Input.get_axis("move_left", "move_right")
 				
+			var was_on_floor = is_on_floor()
+			move_and_slide()
+			
 			if direction == 0:
 				apply_friction(delta)
 				animation_player.play("idle")
@@ -59,12 +70,9 @@ func _physics_process(delta: float) -> void:
 			
 			if not is_on_floor():
 				animation_player.play("jump")
-				
-			var was_on_floor = is_on_floor()
-			move_and_slide()
 			
 			if was_on_floor and not is_on_floor() and velocity.y > 0:
-				coyote_time = 0.25
+				coyote_time = 0.30
 	
 func accelerate_x(horizontal_direction: float, delta: float) -> void:
 	var acceleration_amount = acceleration
@@ -83,11 +91,7 @@ func apply_gravity(delta: float) -> void:
 		else:
 			velocity.y += down_gravity * delta
 	pass
-	
-	
 
-
-	
 	if Input.is_key_pressed(KEY_R):
 		get_tree().reload_current_scene()
 		
@@ -98,6 +102,10 @@ func died() -> void:
 	position = Global.checkpoint
 
 
+func _on_time_out_water_timeout() -> void:
+	died()
+	
+
 func _on_water_detector_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 		if body.name == "water":
 			water_contact_count += 1
@@ -105,12 +113,6 @@ func _on_water_detector_body_shape_entered(_body_rid: RID, body: Node2D, _body_s
 				$time_out_water.stop()
 		if body.name == "Spikes":
 			died()
-	
-
-
-func _on_time_out_water_timeout() -> void:
-	died()
-	
 
 
 func _on_water_detector_body_shape_exited(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
@@ -119,3 +121,17 @@ func _on_water_detector_body_shape_exited(_body_rid: RID, body: Node2D, _body_sh
 		if water_contact_count <= 0:
 			water_contact_count = 0  # Safety: prevent negative
 			$time_out_water.start()
+
+
+func update_bubbles():
+	if water_timer.is_stopped():
+		# In water = hide all bubbles
+		for bubble in bubble_ui.get_children():
+			bubble.visible = true
+	else:
+		# Out of water = show bubbles depending on time left
+		var time_left = water_timer.time_left
+		var bubbles_to_show = int(ceil((time_left / max_time) * total_bubbles))
+
+		for i in range(total_bubbles):
+			bubble_ui.get_child(i).visible = i < bubbles_to_show
