@@ -13,6 +13,8 @@ enum STATES{MOVE, CLIMB}
 @export var jump_amount: = -750
 
 var coyote_time: = 0
+var jumping_amount = 0
+var max_jump = 2
 
 @export var state := STATES.MOVE
 
@@ -47,10 +49,13 @@ func _physics_process(delta: float) -> void:
 			
 			#if not is_on_floor():
 				#velocity.y += up_gravity * delta
+			if is_on_floor():
+				jumping_amount = 0
 
 			# Handle jump.
-			if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote_time > 0):
+			if Input.is_action_just_pressed("jump") and (jumping_amount < max_jump or coyote_time > 0):
 				velocity.y = jump_amount
+				jumping_amount += 1
 
 			# Get the input direction and handle the movement/deceleration.
 			# As good practice, you should replace UI actions with custom gameplay actions.
@@ -70,6 +75,7 @@ func _physics_process(delta: float) -> void:
 			
 			if not is_on_floor():
 				animation_player.play("jump")
+			
 			
 			if was_on_floor and not is_on_floor() and velocity.y > 0:
 				coyote_time = 0.30
