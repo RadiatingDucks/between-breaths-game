@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckxexy6regijo"]
+
+[ext_resource type="Script" uid="uid://bjurwggm7iuus" path="res://Scenes/menu.gd" id="1_1rerr"]
+[ext_resource type="Theme" uid="uid://bix7evwtdanf5" path="res://others/cooltheme.tres" id="2_xhh6f"]
+[ext_resource type="FontFile" uid="uid://cxwrrq37mvfp2" path="res://others/Mynerve-Regular.ttf" id="3_cayip"]
+
+[sub_resource type="Theme" id="Theme_158mb"]
+default_font = ExtResource("3_cayip")
+default_font_size = 100
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = 3.0
+offset_right = -86.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_1rerr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="startbutton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_top = NodePath("../quitbutton")
+theme = ExtResource("2_xhh6f")
+text = "Start"
+expand_icon = true
+
+[node name="optionsbutton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+theme = ExtResource("2_xhh6f")
+text = "Options"
+icon_alignment = 1
+
+[node name="quitbutton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../startbutton")
+theme = ExtResource("2_xhh6f")
+text = "Quit
+"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = -294.0
+offset_top = -165.0
+offset_right = 939.0
+offset_bottom = -49.0
+theme = SubResource("Theme_158mb")
+text = "Between Breaths"
+
+[connection signal="pressed" from="VBoxContainer/startbutton" to="." method="_on_startbutton_pressed"]
+[connection signal="pressed" from="VBoxContainer/optionsbutton" to="." method="_on_optionsbutton_pressed"]
+[connection signal="pressed" from="VBoxContainer/quitbutton" to="." method="_on_quitbutton_pressed"]

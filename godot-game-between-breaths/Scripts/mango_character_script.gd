@@ -6,7 +6,7 @@ enum STATES{MOVE, CLIMB}
 @export var max_speed: = 350
 @export var acceleration: = 1000
 @export var air_acceleration: = 1500
-@export var friction: = 1200
+@export var friction: = 3000
 @export var air_friction: = 500
 @export var up_gravity: = 1500
 @export var down_gravity: = 1500
@@ -64,18 +64,23 @@ func _physics_process(delta: float) -> void:
 			var was_on_floor = is_on_floor()
 			move_and_slide()
 			
+						
+			
+			
 			if direction == 0:
 				apply_friction(delta)
 				animation_player.play("idle")
+		
 			if direction != 0:
 				anchor.scale.x =  sign(direction)
 				collision_shape.scale.x =  sign(direction)
 				accelerate_x(direction, delta)
-				animation_player.play("run")
-			
-			if not is_on_floor():
-				animation_player.play("jump")
-			
+				if not is_on_floor():
+					animation_player.play("jump")
+				else:
+					animation_player.play("run")
+
+
 			
 			if was_on_floor and not is_on_floor() and velocity.y > 0:
 				coyote_time = 0.30

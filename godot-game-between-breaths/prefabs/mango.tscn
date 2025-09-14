@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bu7txl8dqc27c"]
+[gd_scene load_steps=12 format=3 uid="uid://bu7txl8dqc27c"]
 
 [ext_resource type="Script" uid="uid://cg2qxhp5tayq1" path="res://Scripts/mango_character_script.gd" id="1_7aa1i"]
 [ext_resource type="Texture2D" uid="uid://cwsn3utno3k8b" path="res://pictures/mango_runJumpidle.png" id="2_7aa1i"]
@@ -46,7 +46,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_613gq"]
 resource_name = "jump"
 loop_mode = 1
-step = 0.1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -54,10 +54,10 @@ tracks/0/path = NodePath("Anchor/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.1, 0.15, 0.2, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [12, 13, 14, 14, 14, 14, 14, 14, 14]
+"values": [12, 13, 14, 14, 14, 14, 14, 14]
 }
 
 [sub_resource type="Animation" id="Animation_waf7k"]
@@ -85,15 +85,27 @@ _data = {
 &"run": SubResource("Animation_waf7k")
 }
 
+[sub_resource type="Gradient" id="Gradient_7aa1i"]
+offsets = PackedFloat32Array(0.0194805, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gqx06"]
+gradient = SubResource("Gradient_7aa1i")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.834862, 0.142202)
+
 [node name="mango" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_7aa1i")
-friction = 1300
 metadata/_edit_group_ = true
 
 [node name="Anchor" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Anchor"]
+light_mask = 2
 texture_filter = 1
 position = Vector2(-0.5, 0)
 scale = Vector2(0.5, 0.5)
@@ -106,6 +118,7 @@ scale = Vector2(1.5, 1.5)
 shape = SubResource("RectangleShape2D_7p6j4")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -60)
 position_smoothing_enabled = true
 
 [node name="time_out_water" type="Timer" parent="."]
@@ -123,6 +136,11 @@ shape = SubResource("RectangleShape2D_7aa1i")
 libraries = {
 &"": SubResource("AnimationLibrary_613gq")
 }
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.72, 0.504, 0, 1)
+energy = 3.22
+texture = SubResource("GradientTexture2D_gqx06")
 
 [connection signal="timeout" from="time_out_water" to="." method="_on_time_out_water_timeout"]
 [connection signal="body_shape_entered" from="water_detector" to="." method="_on_water_detector_body_shape_entered"]

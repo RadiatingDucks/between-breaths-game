@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bix7evwtdanf5"]
+
+[ext_resource type="FontFile" uid="uid://cxwrrq37mvfp2" path="res://others/Mynerve-Regular.ttf" id="1_oxcp4"]
+
+[resource]
+default_font = ExtResource("1_oxcp4")
+default_font_size = 50

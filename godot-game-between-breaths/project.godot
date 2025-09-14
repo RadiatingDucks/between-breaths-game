@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Between-breaths(recover)"
-run/main_scene="uid://c1rhwdgq8w4po"
+run/main_scene="uid://ckxexy6regijo"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://pictures/icon.svg"
 
@@ -51,3 +51,4 @@ jump={
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
