@@ -1,22 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://uqu3nsq5k4fw"]
+[gd_scene load_steps=6 format=3 uid="uid://uqu3nsq5k4fw"]
 
-[ext_resource type="Texture2D" uid="uid://cf7dhhh8npsmt" path="res://pictures/icon.svg" id="1_gbxor"]
 [ext_resource type="Script" uid="uid://cwtdg53s07uox" path="res://Scripts/portal.gd" id="1_y2eew"]
+[ext_resource type="Texture2D" uid="uid://dynl3ig6rg8ed" path="res://pictures/newportal.png" id="2_y2eew"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbxor"]
-size = Vector2(209, 324)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_srbon"]
+radius = 29.0
+height = 196.0
+
+[sub_resource type="Gradient" id="Gradient_7aa1i"]
+offsets = PackedFloat32Array(0.0194805, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_y2eew"]
+gradient = SubResource("Gradient_7aa1i")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.834862, 0.142202)
 
 [node name="portal" type="Area2D"]
 script = ExtResource("1_y2eew")
-metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-42, -102)
+texture_filter = 1
+position = Vector2(0, 0.999992)
 scale = Vector2(1.65625, 2.59375)
-texture = ExtResource("1_gbxor")
+texture = ExtResource("2_y2eew")
+vframes = 2
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-40.5, -104)
-shape = SubResource("RectangleShape2D_gbxor")
+position = Vector2(-2, -1)
+shape = SubResource("CapsuleShape2D_srbon")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 1
+vframes = 2
+metadata/_edit_group_ = true
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(-0.500007, 0.499994)
+scale = Vector2(2.52344, 2.97656)
+color = Color(0.705594, 0.535877, 0.856927, 0.705882)
+energy = 4.59
+texture = SubResource("GradientTexture2D_y2eew")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

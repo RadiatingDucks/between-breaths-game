@@ -1,7 +1,18 @@
-[gd_scene load_steps=12 format=3 uid="uid://bu7txl8dqc27c"]
+[gd_scene load_steps=14 format=3 uid="uid://bu7txl8dqc27c"]
 
 [ext_resource type="Script" uid="uid://cg2qxhp5tayq1" path="res://Scripts/mango_character_script.gd" id="1_7aa1i"]
 [ext_resource type="Texture2D" uid="uid://cwsn3utno3k8b" path="res://pictures/mango_runJumpidle.png" id="2_7aa1i"]
+
+[sub_resource type="Gradient" id="Gradient_gqx06"]
+colors = PackedColorArray(0.0807833, 0.0807833, 0.0807833, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_waf7k"]
+gradient = SubResource("Gradient_gqx06")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.798165, 0.12844)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7p6j4"]
 size = Vector2(17.3333, 20)
@@ -101,6 +112,12 @@ fill_to = Vector2(0.834862, 0.142202)
 scale = Vector2(2, 2)
 script = ExtResource("1_7aa1i")
 metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0.999994, -62)
+scale = Vector2(3.01563, 1.6875)
+texture = SubResource("GradientTexture2D_waf7k")
 
 [node name="Anchor" type="Node2D" parent="."]
 
