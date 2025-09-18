@@ -36,13 +36,6 @@ theme = ExtResource("2_xhh6f")
 text = "Start"
 expand_icon = true
 
-[node name="optionsbutton" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-theme = ExtResource("2_xhh6f")
-text = "Options"
-icon_alignment = 1
-
 [node name="quitbutton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../startbutton")
@@ -60,5 +53,4 @@ theme = SubResource("Theme_158mb")
 text = "Between Breaths"
 
 [connection signal="pressed" from="VBoxContainer/startbutton" to="." method="_on_startbutton_pressed"]
-[connection signal="pressed" from="VBoxContainer/optionsbutton" to="." method="_on_optionsbutton_pressed"]
 [connection signal="pressed" from="VBoxContainer/quitbutton" to="." method="_on_quitbutton_pressed"]

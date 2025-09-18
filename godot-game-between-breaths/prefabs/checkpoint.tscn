@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bu8l1ubpuadla"]
 
 [ext_resource type="Script" uid="uid://dex1epewyttl8" path="res://Scripts/checkpoint.gd" id="1_jmy7n"]
-[ext_resource type="Texture2D" uid="uid://5724rg6ilf1r" path="res://pictures/flag.png" id="2_jmy7n"]
+[ext_resource type="Texture2D" uid="uid://qxsc140uf3m7" path="res://pictures/New Piskel (6).png" id="2_jmy7n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jmy7n"]
 
@@ -10,8 +10,11 @@ script = ExtResource("1_jmy7n")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.8, 0.8)
+position = Vector2(-0.500002, 0)
+scale = Vector2(1.48437, 1.5)
 texture = ExtResource("2_jmy7n")
+hframes = 2
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(4.75, 4.75)
